@@ -2,7 +2,7 @@
 This is single-page web application that shows the information of 10 prominent schools in the Boston area.  It was done so using Knockout.js, the Google Maps API and Wikipedia API
 
 ##Accessing App:
-The application can be accessed at the following link: [acampos645.github.com](http://acampo645.github.io/)
+The application can be accessed at the following link: [acampos645.github.com](http://acampos645.github.io/)
 
 Once the page has loaded, a map of Boston will be shown with markers representing each of the ten schools.  An interactive list is included on the left side of the screen.
 
