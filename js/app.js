@@ -22,7 +22,7 @@ var ViewModel = function() {
         // titles contain it.  If so, it will be visible on the list and its marker
         // wil remain on the map.  If it is not contained in the school titles, it will
         // remain cleared form the list and the associated marker will be removed
-        for (i = 0, j < this.schools().length; i < j; i++) {
+        for (var i = 0, j = this.schools().length; i < j; i++) {
             var searchTitle = this.schools()[i].title.toLowerCase();
             var searchInput = this.searchTerm().toLowerCase()
             if (searchTitle.indexOf(searchInput) >= 0) {
@@ -37,7 +37,7 @@ var ViewModel = function() {
     // Function used by the search, which removes all schools from the visible list
     // at the start of each search
     this.clearSchools = function() {
-        for (i = 0, j < this.schools().length; i < j; i++) {
+        for (var i = 0, j = this.schools().length; i < j; i++) {
             this.schools()[i].onMap(false);
         }
     }
@@ -99,7 +99,8 @@ function makeMarkers() {
 	// using the latlng, title and id provided.  The map then resets the bounds
 	// after all the markers have been created so that all are visible
     var bounds = new google.maps.LatLngBounds();
-    for (i = 0, j = markers.length; i < j; i++) {
+    var i,j;
+    for (var i = 0, j = markers.length; i < j; i++) {
         var marker = new google.maps.Marker({
             position: {
                 lat: markers[i].lat,
@@ -120,7 +121,7 @@ function makeMarkers() {
 function addListeners() {
 
 	// Loops through each of the marker objects
-    for (i = 0, j = markersArray.length; i < j; i++) {
+    for (let i = 0, j = markersArray.length; i < j; i++) {
 
     	// Adds the a click listener
         markersArray[i].addListener('click', function() {
@@ -189,7 +190,7 @@ function findMarkerById(id) {
 
 
 function resetMarkers() {
-	for(i=0, j=markersArray.length; i<j; i++) {
+	for(var i=0, j=markersArray.length; i<j; i++) {
 		markersArray[i].setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
 		markersArray[i].setAnimation(null);
 	}
