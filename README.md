@@ -20,5 +20,5 @@ Information for each marker can be accessed in one of two ways:
 ##Future Direction
 In future iterations of this project, I would like to add the following features:
 
-*Filtering of schools based on student GPA and SAT scores
-*Implementation of Yelp API to show points of interest near each college
+* Filtering of schools based on student GPA and SAT scores
+* Implementation of Yelp API to show points of interest near each college
