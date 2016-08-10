@@ -1,3 +1,4 @@
+'use strict';
 
 // Global variables that all functions will have access to.
 var markersArray = [];
@@ -117,6 +118,7 @@ function makeMarkers() {
 
 // Adds the infowindow and even listeners for each marker object
 function addListeners() {
+
 	// Loops through each of the marker objects
     for (i = 0, j = markersArray.length; i < j; i++) {
 
@@ -172,6 +174,8 @@ function addListeners() {
             });
         });
     }
+
+    
 }
 
 // Function that returns the index of the marker in the markers array using its unique ID
@@ -183,10 +187,6 @@ function findMarkerById(id) {
     }
 }
 
-// Opens in the infowindow associated with each marker when the listing is clicked
-function openMarker() {
-    google.maps.event.trigger(markersArray[findMarkerById(this.id)], 'click');
-}
 
 function resetMarkers() {
 	for(i=0, j=markersArray.length; i<j; i++) {
