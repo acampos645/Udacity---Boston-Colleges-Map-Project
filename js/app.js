@@ -180,6 +180,13 @@ function openMarker() {
     google.maps.event.trigger(markersArray[findMarkerById(this.id)], 'click');
 }
 
+// Resets markers to original red color when button is pressed
+function resetMarkers() {
+	for (var i=0, j=markersArray.length; i<j; i++) {
+		markersArray[i].setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png')
+	}
+}
+
 // Changes the style of the list when the mouse pointer hovers over them
 $('.school').hover(function() {
     $(this).css({
