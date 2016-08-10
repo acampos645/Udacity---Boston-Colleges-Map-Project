@@ -4,17 +4,11 @@ This is single-page web application that shows the information of 10 prominent s
 Since I have worked in Boston and been involved in college admissions, I felt that creating a basic map showing the layout of schools in the city would be good practice
 
 ##Accessing App:
-The application can be accessed at the following link: 
-
-*[acampos645.github.com](http://acampos645.github.io/)
-
-Once the page has loaded, a map of Boston will be shown with markers representing each of the ten schools.  An interactive list is included on the left side of the screen.
-
-Alternatively, the app can be run locally by downloading the files from the following Github repository:
+The application can be run locally by downloading the files from the following Github repository:
 
 *[https://github.com/acampos645/acampos645](https://github.com/acampos645/acampos645)
 
-Once downloaded, the app can be opened by using a browser to open the index.html file
+Once downloaded, unzip the files and open the index.html file with a browswer.  When the application is loaded, a map of Boston with 10 markers should be displayed along with a sidebar of information.
 
 ##Using the App
 Information for each marker can be accessed in one of two ways:
