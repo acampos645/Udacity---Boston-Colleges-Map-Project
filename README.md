@@ -6,7 +6,7 @@ Since I have worked in Boston and been involved in college admissions, I felt th
 ##Accessing App:
 The application can be run locally by downloading the files from the following Github repository:
 
-*[https://github.com/acampos645/acampos645](https://github.com/acampos645/acampos645)
+*[https://github.com/acampos645/Udacity---Boston-Colleges-Map-Project](https://github.com/acampos645/Udacity---Boston-Colleges-Map-Project)
 
 Once downloaded, unzip the files and open the index.html file with a browswer.  When the application is loaded, a map of Boston with 10 markers should be displayed along with a sidebar of information.
 
