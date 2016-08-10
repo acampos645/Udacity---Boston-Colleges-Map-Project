@@ -10,26 +10,24 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 <body>
-    <div id="map"></div>
-    <div id="sidebar">
-        <div><img id="skyline" src="img/skyline.png"></div>
-        <div id="schools_searchList">
-            <div id="title">BOSTON</div>
-            <div id="search">
-                <span id="search_text">School Filter:<span><br>
+    <div class="sidebar">
+        <div><img class="skyline" src="img/skyline.png"></div>
+        <div class="schools_searchList">
+            <heading class="title">BOSTON</heading>
+            <div class="search">
+                <heading class="search_text">School Filter:</heading><br>
 
-				<input type="text" placeholder="Search" id="school_search" data-bind="value: searchTerm, event: {keyup: search}">
-				<button type="button" onclick="resetMarkers()" id="markerButton">Reset Markers</button><br>
-				<span id="info">click list or markers for information</span>
+				<input type="text" placeholder="Search" class="school_search" data-bind="textInput: searchTerm, event: {keyup: search}"><br>
+				<span class="info">click list or markers for information</span>
             </div>
 
             <!-- Create a list div that will hold the contents for each school.  The data-binds
 				 are associated with the properties from marker.js-->
-            <div id="list">
+            <div class="list">
                 <div data-bind="foreach: schools">
                     <!-- 	Binds events that change the effect and actions of the listings when they
 					are hovered over or clicked on -->
-                    <div class="school" data-bind="attr:{'id': id}, visible:onMap, event: {click: openMarker, mouseenter: animateMarker, mouseleave:deanimateMarker}">
+                    <div class="school" data-bind="attr:{'id': id}, visible:onMap, event: {click: $parent.openMarker, mouseenter: $parent.animateMarker, mouseleave: $parent.deanimateMarker}">
                         <p class="school_name"><span data-bind="text: title"></span></p>
                         <span class="school_address">
 							<span data-bind="text: streetAddress"></span><br>
@@ -43,10 +41,12 @@
             </div>
         </div>
     </div>
+    <div id="map"></div>
+
     <script src="js/lib/knockout-3.4.0.js"></script>
     <script src="js/markers.js"></script>
     <script src="js/app.js"></script>
-    <script async src="https://maps.googleapis.com/maps/api/js?libraries=geometry,drawing,places&key=AIzaSyA3mVSGiRFABR10itBYaWpyE0nb-XTIlqU&v=3&callback=initMap">
+    <script async src="https://maps.googleapis.com/maps/api/js?libraries=geometry,drawing,places&key=AIzaSyA3mVSGiRFABR10itBYaWpyE0nb-XTIlqU&v=3&callback=initMap" onerror="errorAlert()">
     </script>
 </body>
 </html>

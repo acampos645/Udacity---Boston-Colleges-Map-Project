@@ -1,3 +1,4 @@
+
 // Global variables that all functions will have access to.
 var markersArray = [];
 var infowindow;
@@ -14,7 +15,6 @@ var ViewModel = function() {
     // This search function is run every time the user 'keyups'
     this.search = function() {
         // Fetches the search input and clears the visible list of schools
-        this.searchTerm(document.getElementById('school_search').value);
         this.clearSchools();
 
         // Loops through the searchTerm and determines whether any of the school
@@ -40,6 +40,24 @@ var ViewModel = function() {
             this.schools()[i].onMap(false);
         }
     }
+
+	// Animates the marker when the mouse hovers over the listing
+	this.animateMarker = function() {
+   		var animatedMark = findMarkerById(this.id);
+    	markersArray[animatedMark].setAnimation(google.maps.Animation.BOUNCE);
+	}
+
+	// Removes the animation when the mouse leaves the listing
+	this.deanimateMarker = function() {
+	    var animatedMark = findMarkerById(this.id);
+	    markersArray[animatedMark].setAnimation(null);
+	}
+
+	// Opens in the infowindow associated with each marker when the listing is clicked
+	this.openMarker = function() {
+	    google.maps.event.trigger(markersArray[findMarkerById(this.id)], 'click');
+	}
+
 }
 
 // Applies the Knockout bindings defined in the ViewModel
@@ -57,7 +75,7 @@ function initMap() {
         zoom: 2,
         mapTypeControl: true,
         mapTypeControlOptions: {
-            position: google.maps.ControlPosition.TOP_RIGHT
+            position: google.maps.ControlPosition.BOTTOM_CENTER
         }
     });
 
@@ -104,7 +122,9 @@ function addListeners() {
 
     	// Adds the a click listener
         markersArray[i].addListener('click', function() {
-
+        	// Resets marker color and animation before they are changed in the new marker
+        	resetMarkers();
+        	this.setAnimation(google.maps.Animation.BOUNCE);
         	// Changes the icon color to green when clicked
             this.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png')
 
@@ -116,8 +136,8 @@ function addListeners() {
             // to center on the location
             var index = findMarkerById(this.id);
             map.panTo({
-                lat: markers[index].lat,
-                lng: markers[index].lng
+                lat: (markers[index].lat),
+                lng: markers[index].lng 
             });
 
             // Builds the string that will be used to request information from Wikipedia.
@@ -141,7 +161,7 @@ function addListeners() {
                 // to construct the content of each marker's infowindow
                 success: function(response) {
                     var wikiOutput = response[2][0] + '<br><a href="' + response[3][0] + '">Wikipedia</a><br>';
-                    var contentStr = '<img class="window_image" src="' + markers[index].image + '"><div class="school_info">' + wikiOutput + '<hr>' + 'Average Incoming Scores<p>GPA - ' + markers[index].GPA + '<br>SAT Math - ' + markers[index].satMath + '<br>SAT Reading - ' + markers[index].satReading + '<br>SAT Writing - ' + markers[index].satWriting + '</div>';
+                    var contentStr = '<img class="window_image" src="' + markers[index].image + '"><div class="school_info">' + wikiOutput + '</div><hr>' + '<div class="school_numbers">Average Incoming Scores<p>GPA - ' + markers[index].GPA + '<br>SAT Math - ' + markers[index].satMath + '<br>SAT Reading - ' + markers[index].satReading + '<br>SAT Writing - ' + markers[index].satWriting + '</div>';
 
                     // Sets the content of the window to the newly created content
                     infowindow.setContent(contentStr);
@@ -152,18 +172,6 @@ function addListeners() {
             });
         });
     }
-}
-
-// Animates the marker when the mouse hovers over the listing
-function animateMarker() {
-    var animatedMark = findMarkerById(this.id);
-    markersArray[animatedMark].setAnimation(google.maps.Animation.BOUNCE);
-}
-
-// Removes the animation when the mouse leaves the listing
-function deanimateMarker() {
-    var animatedMark = findMarkerById(this.id);
-    markersArray[animatedMark].setAnimation(null);
 }
 
 // Function that returns the index of the marker in the markers array using its unique ID
@@ -180,22 +188,15 @@ function openMarker() {
     google.maps.event.trigger(markersArray[findMarkerById(this.id)], 'click');
 }
 
-// Resets markers to original red color when button is pressed
 function resetMarkers() {
-	for (var i=0, j=markersArray.length; i<j; i++) {
-		markersArray[i].setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png')
+	for(i=0, j=markersArray.length; i<j; i++) {
+		markersArray[i].setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+		markersArray[i].setAnimation(null);
 	}
 }
 
-// Changes the style of the list when the mouse pointer hovers over them
-$('.school').hover(function() {
-    $(this).css({
-        'color': 'white',
-        'background-color': '#AFAFAF'
-    });
-}, function() {
-    $(this).css({
-        'color': '#404040',
-        'background-color': 'white'
-    })
-});
+// Alerts error if google maps cannot be loaded
+function errorAlert() {
+	alert("Google Maps cannot be loaded at this time.")
+
+}

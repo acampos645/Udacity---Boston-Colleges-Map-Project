@@ -1,5 +1,8 @@
 
-html, body {
+
+
+html, 
+body {
 	height: 100%;
 	width: 100%;
 	padding: 0;
@@ -8,36 +11,36 @@ html, body {
 	display: inline;
 	font-family: Arial;
 }
-hr {
-	width: 75%;
-}
-#sidebar {
-	margin: 10px;
-	width: 15%;
-	position: absolute;
-	max-height: 95%;
-}
-#search {
-	text-align: center;
-	background-color: #E34840;
-	padding-top: 10px;
-	padding-bottom: 10px;
-}
+
 #map {
 	width: 100%;
 	height: 100%;
 	z-index: -1;
 	position: absolute;
 }
-#search_text {
+
+.sidebar {
+	margin: 10px;
+	width: 20%;
+	max-height: 95%;
+	position: absolute;
+}
+.search {
+	text-align: center;
+	background-color: #E34840;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.search_text {
 	font-size: 24px;
 }
-#school_search {
+.school_search {
 	height: 30px;
 	width: 90%;
 	font-size: 20px;
 }
-#title {
+.title {
 	background-color: black;
 	width: 100%;
 	color: white;
@@ -50,12 +53,12 @@ hr {
 	padding-bottom: 5px;
 }
 .school {
-	margin: 0px;
+	margin: 0;
 	text-align: center;
 	color: #404040;
 	padding: 5px;
 }
-#list {
+.list {
 	max-height: 60vh;
 	overflow: scroll;
 	text-align: center;	
@@ -63,18 +66,18 @@ hr {
 	background-color: white;
 }
 .school_name {
-	margin: 0px;
+	margin: 0;
 	font-size: 22px;
 	font-weight: bold;
 	text-transform: capitalize;
 	text-shadow: 1px 1px #C0C0C0;
 }
-#skyline {
+.skyline {
 	width: 100%;
-	margin-bottom: 0px;
+	margin-bottom: 0;
 }
-#schools_searchList {
-	margin: 0px;
+.schools_searchList {
+	margin: 0;
 	box-shadow: 4px 4px 2px black; 
 }
 .window_image {
@@ -82,14 +85,55 @@ hr {
 	display: inline;
 	text-align: center;
 	align-content: center;
-	align: middle;
 }
-.school_info {
+.school_info,
+.school_numbers {
 	text-align: center;
 	font-size: 18px;
 	font-family: Arial;
 }
-#info {
+.info {
 	font-size: 14px;
 	font-style: italic;
+}
+
+@media only screen and (max-width: 750px) {
+	
+	#map{
+		height: 75%;
+	}
+	.skyline{
+		display: none;
+	}
+	.title,
+	.search_text {
+		font-size: 1em;
+	}
+	.sidebar{
+		width: 100%;
+		height: 25%;
+		margin: 0;
+		position: relative;
+	}
+	.list {
+		max-height: 20vh;
+	}
+	.school_address {
+		display: none;
+	}
+	.school_search {
+		font-size: 1em;
+		height: 20px;
+		display: inline;
+	}
+	.school_name {
+		font-size: 16px;
+	}
+	.school_info {
+		font-size: 12px;
+	}
+	.window_image,
+	.school_numbers {
+		display: none;	
+	}
 }
